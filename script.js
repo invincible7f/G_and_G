@@ -249,101 +249,73 @@ async function sendRequest() {
     }
 
 function submitForm(e){
-     e.preventDefault()
-    
-    let isNameValid= false;
+  e.preventDefault();
+
+    let isNameValid = false;
     let isEmailValid = false;
     let isMessageValid = false;
 
     const nameAlert = form.name.parentElement.querySelector('.alert');
     const emailAlert = form.email.parentElement.querySelector('.alert');
-    const messageAlert = form.message.parentElement.querySelector('.alert')
+    const messageAlert = form.message.parentElement.querySelector('.alert');
+    
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const namePattern = /^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ\s]+$/;
 
     const formData = {
-    userName: form.name.value.trim(),
-    userEmail: form.email.value.trim(),
-    userMessage: form.message.value.trim(),
-    
+        userName: form.name.value.trim(),
+        userEmail: form.email.value.trim(),
+        userMessage: form.message.value.trim(),
+    };
 
-   }
-   
-
-// Перевірка вводу імені
-
-   if (!formData.userName) {
+    // Валідація Імені
+    if (!formData.userName) {
         if (nameAlert) {
-            
             nameAlert.innerHTML = '<span>Введіть ім\'я</span>';
-            nameAlert?.classList.add('alert-active');
-
-            }
-                
+            nameAlert.classList.add('alert-active');
+        }
     } else if (!namePattern.test(formData.userName)) {
         if (nameAlert) {
-            
             nameAlert.innerHTML = '<span>Введіть коректно ім\'я</span>';
-            nameAlert?.classList.add('alert-active');
-    
-    }
+            nameAlert.classList.add('alert-active');
+        }
     } else {
-            nameAlert?.classList.remove('alert-active');
-            isNameValid = true; 
+        nameAlert?.classList.remove('alert-active');
+        isNameValid = true;
+    } 
 
-    
-
-// Перевірка вводу email
-
-
+  // Валідація email
     if (!formData.userEmail) {
-        if (emailAlert)
-            { 
-                
-                emailAlert.innerHTML = '<span>Введіть email</span>';
-                emailAlert?.classList.add('alert-active');
-    
-    }
-
-    } else if (!emailPattern.test(formData.userEmail)) {
-
         if (emailAlert) {
-
+            emailAlert.innerHTML = '<span>Введіть email</span>';
+            emailAlert.classList.add('alert-active');
+        }
+    } else if (!emailPattern.test(formData.userEmail)) {
+        if (emailAlert) {
             emailAlert.innerHTML = '<span>Введіть коректно email</span>';
-            emailAlert?.classList.add('alert-active');}
-
+            emailAlert.classList.add('alert-active');
+        }
     } else {
-
-            emailAlert?.classList.remove('alert-active');
-            isEmailValid = true;
+        emailAlert?.classList.remove('alert-active');
+        isEmailValid = true;
     }
 
-// Перевірка вводу повідомлення
-
-
+     // Валідація повідомлення
     if (!formData.userMessage) {
         if (messageAlert) {
             messageAlert.innerHTML = '<span>Введіть повідомлення</span>';
-        messageAlert?.classList.add('alert-active');
-    
-    }
+            messageAlert.classList.add('alert-active');
+        }
     } else {
-        
         messageAlert?.classList.remove('alert-active');
         isMessageValid = true;
     }
-   
-   if (isNameValid && isEmailValid && isMessageValid){
-      
-  contactForm.reset()
-       sendRequest()
-       
-   }
-   
 
-
-
- }
+    // Відправка
+    if (isNameValid && isEmailValid && isMessageValid) {
+        contactForm.reset();
+        sendRequest();
+    }
 }
 
 inputFields?.forEach(field => {
