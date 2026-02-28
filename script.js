@@ -238,7 +238,7 @@ async function sendRequest() {
                     successModal.classList.remove('active');
                 }, 300);
                
-             }, 1500)
+             }, 2)
         }
 
     } 
