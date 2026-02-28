@@ -9,11 +9,19 @@ const formModal = document.querySelector(".modal-form")
 const modalInputFields = formModal.querySelectorAll('input')
 const successModal = document.querySelector('#successModal')
 const successModalBtn = successModal.querySelector('.btn-success-modal')
+const navLinks = document.querySelectorAll(".nav-links div a")
+const navMenu = document.querySelector(".nav-links")
+const burgerCheckbox = document.querySelector("#burger-checkbox")
 
  const modalInput = {
     name: document.querySelector('[name="input-name"]'),
     tel: document.querySelector('[name="input-tel"]'),
     tickets:document.querySelector('[name="input-tickets"]')
+  }
+
+  function navToggle(){
+
+   burgerCheckbox.checked = false 
   }
 
   function submitModalForm(e){
@@ -171,8 +179,9 @@ function closeModalByOverlay(e){
     inp.addEventListener('input', inputInTheField)
  })
     successModalBtn?.addEventListener('click', closeSuccessModal)
-
-
+   navLinks.forEach(nav=>{
+    nav.addEventListener('click', navToggle)
+   })
 
 
   // ------------------------------------Форма-------------------------------------
